@@ -28,7 +28,7 @@
   --ph:#2C241F; --ph-fg:#998B80; color-scheme:dark}
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7;margin:0;word-break:keep-all;overflow-wrap:break-word}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -67,7 +67,7 @@ section{padding-block:72px}
 section+section{border-top:1px solid var(--line)}
 
 /* 첫 화면 */
-.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(2rem,4.6vw,3.2rem);margin-top:12px}
 .hero .lead{margin-top:18px}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
@@ -77,7 +77,7 @@ section+section{border-top:1px solid var(--line)}
 .split a.b2c b{color:var(--glaze)}
 .split a.b2b b{color:var(--cold)}
 .hero .ph{aspect-ratio:4/5}
-@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero .ph{aspect-ratio:4/3}}
+@media (max-width:760px){.hero .hero-grid{grid-template-columns:1fr}.hero .ph{aspect-ratio:4/3}}
 
 /* 수치 띠 */
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:4px;margin-top:40px;background:var(--surface)}
@@ -157,7 +157,7 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 </div></header>
 
 <main id="top">
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="wrap hero-grid">
   <div>
     <p class="eyebrow">충남 청양 · 족발 제조</p>
     <h1>직접 삶고, 바로 진공포장한 장수촌 미니족발</h1>
