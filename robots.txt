@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /
+Allow: /
+Sitemap: https://www.xn--9p4b4nm2jd6p.com/sitemap.xml
