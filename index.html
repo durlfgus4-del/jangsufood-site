@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>장수식품 사이트 시안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* Layout: 한 페이지 스크롤. 상단 고정 메뉴 → 6개 구역. 소비자(구매)와 업체(납품) 두 갈래 동선이 첫 화면에서 갈라짐 */
+:root{
+  --bg:#FBFAF8; --surface:#F1EEEA; --fg:#231A16; --muted:#6E625B;
+  --glaze:#8E2F1C;   /* 족발 윤기, 주 강조색 */
+  --cold:#2F5D73;    /* 냉동·위생, 보조색 */
+  --line:#DDD6CF; --onaccent:#FFFFFF;
+  --ph:#E6E0D9; --ph-fg:#8A7D74;
+  --display:"Gowun Batang", "Noto Serif KR", "AppleMyungjo", serif;
+  --body:"IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#17120F; --surface:#221B17; --fg:#F1EAE4; --muted:#B3A69C;
+  --glaze:#E07A5C; --cold:#7FB3CB; --line:#3A302A; --onaccent:#17120F;
+  --ph:#2C241F; --ph-fg:#998B80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17120F; --surface:#221B17; --fg:#F1EAE4; --muted:#B3A69C;
+  --glaze:#E07A5C; --cold:#7FB3CB; --line:#3A302A; --onaccent:#17120F;
+  --ph:#2C241F; --ph-fg:#998B80; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.3}
+h2{font-size:clamp(1.6rem,3.2vw,2.2rem)}
+h3{font-size:1.2rem}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;color:var(--glaze);font-weight:600}
+.lead{color:var(--muted);max-width:60ch}
+
+/* 시안 안내 */
+.draft{background:var(--cold);color:var(--onaccent);font-size:.85rem}
+.draft .wrap{padding-block:8px;display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between}
+
+/* 메뉴 */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{font-family:var(--display);font-weight:700;font-size:1.25rem;text-decoration:none}
+.logo small{font-family:var(--body);font-size:.75rem;color:var(--muted);font-weight:500;margin-left:6px}
+nav ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;flex-wrap:wrap}
+nav a{text-decoration:none;font-size:.92rem;color:var(--muted)}
+nav a:hover,nav a:focus-visible{color:var(--fg)}
+.nav-buy{color:var(--glaze)!important;font-weight:600}
+@media (max-width:760px){nav ul{gap:12px}nav li.opt{display:none}}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:4px;font-weight:600;text-decoration:none;font-size:.98rem;border:1.5px solid transparent;cursor:pointer;font-family:var(--body)}
+.btn-glaze{background:var(--glaze);color:var(--onaccent)}
+.btn-line{border-color:var(--fg);color:var(--fg);background:transparent}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--cold);outline-offset:2px}
+
+/* 사진 자리 */
+.ph{background:var(--ph);color:var(--ph-fg);display:flex;align-items:center;justify-content:center;text-align:center;font-size:.85rem;padding:12px;border-radius:2px;max-width:100%}
+
+section{padding-block:72px}
+section+section{border-top:1px solid var(--line)}
+
+/* 첫 화면 */
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2rem,4.6vw,3.2rem);margin-top:12px}
+.hero .lead{margin-top:18px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.split a{display:flex;flex-direction:column;gap:4px;padding:16px;border:1px solid var(--line);border-radius:4px;text-decoration:none;background:var(--surface)}
+.split a b{font-size:1rem}
+.split a span{font-size:.85rem;color:var(--muted)}
+.split a.b2c b{color:var(--glaze)}
+.split a.b2b b{color:var(--cold)}
+.hero .ph{aspect-ratio:4/5}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero .ph{aspect-ratio:4/3}}
+
+/* 수치 띠 */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:4px;margin-top:40px;background:var(--surface)}
+.facts div{padding:18px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-family:var(--display);font-size:1.35rem}
+.facts span{font-size:.82rem;color:var(--muted)}
+@media (max-width:760px){.facts{grid-template-columns:1fr 1fr}.facts div:nth-child(2){border-right:0}.facts div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* 회사 소개 */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.about .body{display:flex;flex-direction:column;gap:16px}
+.motto{font-family:var(--display);font-size:1.15rem;border-left:3px solid var(--glaze);padding-left:16px;color:var(--fg)}
+.about .ph{aspect-ratio:3/2}
+@media (max-width:760px){.about .wrap{grid-template-columns:1fr;gap:28px}}
+
+/* 제품 */
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.prod{display:flex;flex-direction:column;gap:10px}
+.prod .ph{aspect-ratio:1}
+.prod .cut{font-size:.78rem;color:var(--cold);font-weight:600}
+.prod p{font-size:.88rem;color:var(--muted)}
+@media (max-width:900px){.products{grid-template-columns:1fr 1fr}}
+
+/* 생산·위생 */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+.step{display:flex;flex-direction:column;gap:10px}
+.step .ph{aspect-ratio:4/3}
+.step h3::before{counter-increment:step;content:counter(step) ". ";color:var(--glaze)}
+.step p{font-size:.88rem;color:var(--muted)}
+.cert{display:flex;gap:20px;align-items:center;margin-top:40px;padding:20px;border:1px solid var(--line);border-radius:4px}
+.cert .ph{width:120px;height:150px;flex:none}
+.cert div{min-width:0}
+@media (max-width:900px){.process{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.cert{flex-direction:column;align-items:flex-start}}
+
+/* 납품 안내 */
+.b2b{background:var(--surface)}
+.b2b-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.terms{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+.terms th,.terms td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.terms th{font-weight:600;color:var(--muted);width:32%}
+.table-box{overflow-x:auto}
+form{display:flex;flex-direction:column;gap:14px}
+label{font-size:.85rem;font-weight:600;display:flex;flex-direction:column;gap:6px}
+input,select,textarea{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg)}
+textarea{min-height:90px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.note{font-size:.82rem;color:var(--muted)}
+.sent{font-size:.9rem;color:var(--cold);font-weight:600}
+@media (max-width:760px){.b2b-grid{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+
+/* 구매 */
+.buy .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.buy-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+
+footer{border-top:1px solid var(--line);padding-block:32px;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;flex-direction:column;gap:6px}
+.todo{background:color-mix(in srgb,var(--glaze) 14%,transparent);color:var(--glaze);padding:0 4px;border-radius:2px;font-weight:600}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+</head>
+<body>
+<div class="draft"><div class="wrap"><span>시안입니다. 회색 칸은 사진 자리, <span style="text-decoration:underline">붉은 표시</span>는 확인이 필요한 내용입니다.</span><span>장수식품.com</span></div></div>
+
+<header><div class="wrap">
+  <a class="logo" href="#top">장수식품<small>장수촌 미니족발</small></a>
+  <nav aria-label="주 메뉴"><ul>
+    <li class="opt"><a href="#about">회사 소개</a></li>
+    <li><a href="#products">제품</a></li>
+    <li class="opt"><a href="#process">생산·위생</a></li>
+    <li><a href="#b2b">납품 문의</a></li>
+    <li><a class="nav-buy" href="#buy">구매하기</a></li>
+  </ul></nav>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div>
+    <p class="eyebrow">충남 청양 · 족발 제조</p>
+    <h1>직접 삶고, 바로 진공포장한 장수촌 미니족발</h1>
+    <p class="lead">청양 공장에서 손질부터 삶기, 진공포장까지 한곳에서 끝냅니다. 식당에는 일정한 품질로 납품하고, 집에서는 데우기만 하면 됩니다.</p>
+    <div class="split">
+      <a class="b2c" href="#buy"><b>집에서 먹을래요</b><span>스마트스토어에서 바로 구매</span></a>
+      <a class="b2b" href="#b2b"><b>매장에 납품받고 싶어요</b><span>단가 안내 · 무료 샘플 신청</span></a>
+    </div>
+  </div>
+  <div class="ph">사진: 대표 제품 (윤기 나는 미니족발 한 접시)</div>
+</div>
+<div class="wrap"><div class="facts">
+  <div><b>HACCP</b><span>인증 공장에서 생산</span></div>
+  <div><b>-18℃</b><span>냉동 보관, 제조일로부터 1년</span></div>
+  <div><b>전국</b><span>택배 납품, 대전권은 직배송</span></div>
+  <div><b>무료</b><span>매장 시식용 샘플 제공</span></div>
+</div></div>
+</section>
+
+<section class="about" id="about"><div class="wrap">
+  <div class="body">
+    <p class="eyebrow">회사 소개</p>
+    <h2>족발 한 가지를 오래 만들어 온 회사</h2>
+    <p class="lead">장수식품은 충남 청양에서 족발을 생산합니다. 원료 손질, 삶기, 양념, 포장을 모두 공장 안에서 직접 하고, 식자재 유통사·프랜차이즈·일반 식당과 온라인 고객에게 공급합니다.</p>
+    <p class="lead">설립 연도와 연혁: <span class="todo">대표님 확인 필요</span></p>
+    <p class="motto">일하기 위해 살지 않는다. 즐기기 위해 일한다.</p>
+  </div>
+  <div class="ph">사진: 청양 공장 외관</div>
+</div></section>
+
+<section id="products"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">제품</p>
+    <h2>매장 메뉴 구성에 맞춘 네 가지 규격</h2>
+    <p class="lead">썰어서 바로 내는 제품과 통으로 받아 매장에서 써는 제품으로 나뉩니다. 모두 냉동으로 보관·배송합니다.</p>
+  </div>
+  <div class="products">
+    <div class="prod"><div class="ph">사진: 350g</div><span class="cut">썬 제품</span><h3>미니족발 350g</h3><p>1인 야식, 사이드 메뉴용</p></div>
+    <div class="prod"><div class="ph">사진: 525g</div><span class="cut">썬 제품</span><h3>미니족발 525g</h3><p>2인 메뉴, 술안주 세트용</p></div>
+    <div class="prod"><div class="ph">사진: 700g</div><span class="cut">통 제품</span><h3>미니족발 700g</h3><p>매장에서 직접 썰어 내는 용도</p></div>
+    <div class="prod"><div class="ph">사진: 순살 300g</div><span class="cut">순살</span><h3>순살족발 300g</h3><p>뼈 없이 바로 담는 메뉴용</p></div>
+  </div>
+</div></section>
+
+<section id="process"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">생산·위생</p>
+    <h2>삶은 직후 진공포장해서 맛이 그대로 갑니다</h2>
+    <p class="lead">열성형 진공포장기로 팩을 그 자리에서 성형하고 밀봉합니다. 공기 접촉이 줄어 냉동 중에도 마르거나 냄새가 배지 않습니다.</p>
+  </div>
+  <div class="process">
+    <div class="step"><div class="ph">사진: 손질</div><h3>손질</h3><p>해동한 원료육의 털과 이물을 하나씩 제거합니다.</p></div>
+    <div class="step"><div class="ph">사진: 삶기</div><h3>삶기</h3><p>자체 양념으로 삶아 색과 윤기를 냅니다.</p></div>
+    <div class="step"><div class="ph">사진: 진공포장기</div><h3>진공포장</h3><p>열성형 진공포장기로 성형과 밀봉을 한 번에 합니다.</p></div>
+    <div class="step"><div class="ph">사진: 냉동 보관</div><h3>냉동·출고</h3><p>급속 냉동 후 택배나 냉동탑차로 출고합니다.</p></div>
+  </div>
+  <div class="cert">
+    <div class="ph">HACCP 인증서</div>
+    <div><h3>HACCP 인증</h3><p class="lead">인증서 원본 이미지를 올려 두면 납품 담당자가 바로 확인할 수 있습니다. 원산지는 상세 제품 정보에 표시합니다.</p></div>
+  </div>
+</div></section>
+
+<section class="b2b" id="b2b"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">납품 문의</p>
+    <h2>샘플부터 받아보고 결정하세요</h2>
+    <p class="lead">칼국수·국밥·해장국집, 야식 매장, 식자재 유통사 모두 납품합니다. 단가표는 문의 주시면 따로 보내드립니다.</p>
+  </div>
+  <div class="b2b-grid">
+    <div class="table-box"><table class="terms">
+      <tr><th>배송</th><td>대전·세종·계룡·금산 직배송<br>그 외 지역 전국 택배</td></tr>
+      <tr><th>택배 1박스</th><td>350g 35팩 · 525g 25팩 · 700g 20팩 · 순살 35팩</td></tr>
+      <tr><th>택배 주문</th><td>필요한 수량만큼 자유롭게</td></tr>
+      <tr><th>샘플</th><td>매장 시식용 무료 제공</td></tr>
+      <tr><th>정산</th><td>거래명세서 발행, 전자세금계산서 발행</td></tr>
+    </table></div>
+    <form id="inquiry" novalidate>
+      <div class="row2">
+        <label for="f-name">상호<input id="f-name" name="name" placeholder="예: 한마음칼국수"></label>
+        <label for="f-tel">연락처<input id="f-tel" name="tel" inputmode="tel" placeholder="010-0000-0000"></label>
+      </div>
+      <div class="row2">
+        <label for="f-type">업종<select id="f-type" name="type"><option>음식점</option><option>프랜차이즈</option><option>식자재 유통</option><option>기타</option></select></label>
+        <label for="f-area">지역<input id="f-area" name="area" placeholder="예: 대전 서구"></label>
+      </div>
+      <label for="f-msg">문의 내용<textarea id="f-msg" name="msg" placeholder="관심 있는 제품, 예상 주문량, 샘플 희망 여부"></textarea></label>
+      <button class="btn btn-glaze" type="submit">문의 보내기</button>
+      <p class="note" id="f-status">실제 사이트에서는 대표님 이메일로 전달됩니다.</p>
+    </form>
+  </div>
+</div></section>
+
+<section class="buy" id="buy"><div class="wrap">
+  <p class="eyebrow">구매하기</p>
+  <h2>집에서는 스마트스토어로 주문하세요</h2>
+  <p class="lead">네이버 스마트스토어 '장수촌족발'에서 판매합니다. 이 버튼은 나중에 shop.장수식품.com 주소로도 연결됩니다.</p>
+  <div class="buy-links">
+    <a class="btn btn-glaze" href="https://smartstore.naver.com/jsangsoofood" target="_blank" rel="noopener">스마트스토어 바로가기</a>
+    <a class="btn btn-line" href="https://www.instagram.com/jangsu_minijokbal/" target="_blank" rel="noopener">인스타그램</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <b style="color:var(--fg)">장수식품</b>
+  <span>충남 청양군 <span class="todo">상세 주소</span> · 대표 <span class="todo">성함</span> · 사업자등록번호 <span class="todo">번호</span></span>
+  <span>전화 <span class="todo">대표 번호</span> · 납품 문의는 위 문의 양식을 이용해 주세요</span>
+</div></footer>
+
+<script>
+document.getElementById('inquiry').addEventListener('submit', function(e){
+  e.preventDefault();
+  var s=document.getElementById('f-status');
+  s.textContent='시안이라 실제로 보내지지는 않습니다. 완성본에서는 대표님 이메일로 전달됩니다.';
+  s.className='sent';
+});
+</script>
+
+</body>
+</html>
