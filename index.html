@@ -61,6 +61,7 @@ nav a:hover,nav a:focus-visible{color:var(--fg)}
 .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--cold);outline-offset:2px}
 
 /* 사진 자리 */
+.photo{display:block;width:100%;height:100%;object-fit:cover;border-radius:2px;background:var(--ph)}
 .ph{background:var(--ph);color:var(--ph-fg);display:flex;align-items:center;justify-content:center;text-align:center;font-size:.85rem;padding:12px;border-radius:2px;max-width:100%}
 
 section{padding-block:72px}
@@ -76,8 +77,8 @@ section+section{border-top:1px solid var(--line)}
 .split a span{font-size:.85rem;color:var(--muted)}
 .split a.b2c b{color:var(--glaze)}
 .split a.b2b b{color:var(--cold)}
-.hero .ph{aspect-ratio:4/5}
-@media (max-width:760px){.hero .hero-grid{grid-template-columns:1fr}.hero .ph{aspect-ratio:4/3}}
+.hero .ph,.hero .photo{aspect-ratio:4/5}
+@media (max-width:760px){.hero .hero-grid{grid-template-columns:1fr}.hero .photo{aspect-ratio:4/3}}
 
 /* 수치 띠 */
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:4px;margin-top:40px;background:var(--surface)}
@@ -91,26 +92,29 @@ section+section{border-top:1px solid var(--line)}
 .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .about .body{display:flex;flex-direction:column;gap:16px}
 .motto{font-family:var(--display);font-size:1.15rem;border-left:3px solid var(--glaze);padding-left:16px;color:var(--fg)}
-.about .ph{aspect-ratio:3/2}
+.about .photo{aspect-ratio:16/9}
 @media (max-width:760px){.about .wrap{grid-template-columns:1fr;gap:28px}}
 
 /* 제품 */
 .sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .prod{display:flex;flex-direction:column;gap:10px}
-.prod .ph{aspect-ratio:1}
+.prod .ph,.prod .photo{aspect-ratio:1}
 .prod .cut{font-size:.78rem;color:var(--cold);font-weight:600}
 .prod p{font-size:.88rem;color:var(--muted)}
 @media (max-width:900px){.products{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.products{grid-template-columns:1fr}}
 
 /* 생산·위생 */
 .process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
 .step{display:flex;flex-direction:column;gap:10px}
-.step .ph{aspect-ratio:4/3}
+.step .photo{aspect-ratio:4/3}
+.line-photo{aspect-ratio:21/9;margin-bottom:28px}
+@media (max-width:760px){.line-photo{aspect-ratio:4/3}}
 .step h3::before{counter-increment:step;content:counter(step) ". ";color:var(--glaze)}
 .step p{font-size:.88rem;color:var(--muted)}
 .cert{display:flex;gap:20px;align-items:center;margin-top:40px;padding:20px;border:1px solid var(--line);border-radius:4px}
-.cert .ph{width:120px;height:150px;flex:none}
+.cert a{flex:none}.cert img{width:160px;height:auto;border:1px solid var(--line);border-radius:2px;display:block}
 .cert div{min-width:0}
 @media (max-width:900px){.process{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.cert{flex-direction:column;align-items:flex-start}}
@@ -143,7 +147,7 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 
 </head>
 <body>
-<div class="draft"><div class="wrap"><span>시안입니다. 회색 칸은 사진 자리, <span style="text-decoration:underline">붉은 표시</span>는 확인이 필요한 내용입니다.</span><span>장수식품.com</span></div></div>
+<div class="draft"><div class="wrap"><span>시안입니다. <span style="text-decoration:underline">붉은 표시</span>는 확인이 필요한 내용입니다.</span><span>장수식품.com</span></div></div>
 
 <header><div class="wrap">
   <a class="logo" href="#top">장수식품<small>장수촌 미니족발</small></a>
@@ -167,7 +171,7 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
       <a class="b2b" href="#b2b"><b>매장에 납품받고 싶어요</b><span>단가 안내 · 무료 샘플 신청</span></a>
     </div>
   </div>
-  <div class="ph">사진: 대표 제품 (윤기 나는 미니족발 한 접시)</div>
+  <img class="photo" src="img/hero.jpg" alt="나무 접시에 담은 장수촌 미니족발" width="1100" height="1100">
 </div>
 <div class="wrap"><div class="facts">
   <div><b>HACCP</b><span>인증 공장에서 생산</span></div>
@@ -181,24 +185,23 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
   <div class="body">
     <p class="eyebrow">회사 소개</p>
     <h2>족발 한 가지를 오래 만들어 온 회사</h2>
-    <p class="lead">장수식품은 충남 청양에서 족발을 생산합니다. 원료 손질, 삶기, 양념, 포장을 모두 공장 안에서 직접 하고, 식자재 유통사·프랜차이즈·일반 식당과 온라인 고객에게 공급합니다.</p>
+    <p class="lead">장수식품은 충남 청양에서 족발을 생산하는 HACCP 인증 식육가공 공장입니다. 원료 손질, 삶기, 양념, 포장을 모두 공장 안에서 직접 하고, 식자재 유통사·프랜차이즈·일반 식당과 온라인 고객에게 공급합니다.</p>
     <p class="lead">설립 연도와 연혁: <span class="todo">대표님 확인 필요</span></p>
     <p class="motto">일하기 위해 살지 않는다. 즐기기 위해 일한다.</p>
   </div>
-  <div class="ph">사진: 청양 공장 외관</div>
+  <img class="photo" src="img/about.jpg" alt="위생복을 입은 직원들이 삶은 족발을 손질하는 청양 공장 작업장" width="1200" height="675" loading="lazy">
 </div></section>
 
 <section id="products"><div class="wrap">
   <div class="sec-head">
     <p class="eyebrow">제품</p>
-    <h2>매장 메뉴 구성에 맞춘 네 가지 규격</h2>
+    <h2>매장 메뉴 구성에 맞춘 규격</h2>
     <p class="lead">썰어서 바로 내는 제품과 통으로 받아 매장에서 써는 제품으로 나뉩니다. 모두 냉동으로 보관·배송합니다.</p>
   </div>
   <div class="products">
-    <div class="prod"><div class="ph">사진: 350g</div><span class="cut">썬 제품</span><h3>미니족발 350g</h3><p>1인 야식, 사이드 메뉴용</p></div>
-    <div class="prod"><div class="ph">사진: 525g</div><span class="cut">썬 제품</span><h3>미니족발 525g</h3><p>2인 메뉴, 술안주 세트용</p></div>
-    <div class="prod"><div class="ph">사진: 700g</div><span class="cut">통 제품</span><h3>미니족발 700g</h3><p>매장에서 직접 썰어 내는 용도</p></div>
-    <div class="prod"><div class="ph">사진: 순살 300g</div><span class="cut">순살</span><h3>순살족발 300g</h3><p>뼈 없이 바로 담는 메뉴용</p></div>
+    <div class="prod"><img class="photo" src="img/prod-cut.jpg" alt="한입 크기로 썬 미니족발" width="900" height="1200" loading="lazy"><span class="cut">썬 제품</span><h3>미니족발 350g · 525g</h3><p>한입 크기로 썰어 팩에 담았습니다. 데우기만 하면 바로 냅니다. 350g은 1인 야식·사이드, 525g은 2인 메뉴·술안주용.</p></div>
+    <div class="prod"><img class="photo" src="img/prod-whole.jpg" alt="썰기 전 통 미니족발" width="900" height="1200" loading="lazy"><span class="cut">통 제품</span><h3>미니족발 700g</h3><p>썰지 않은 통 제품입니다. 매장에서 원하는 크기로 직접 썰어 냅니다.</p></div>
+    <div class="prod"><div class="ph">사진: 순살 300g <span class="todo">사진 필요</span></div><span class="cut">순살</span><h3>순살족발 300g</h3><p>뼈 없이 바로 담는 메뉴용</p></div>
   </div>
 </div></section>
 
@@ -208,15 +211,16 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
     <h2>삶은 직후 진공포장해서 맛이 그대로 갑니다</h2>
     <p class="lead">열성형 진공포장기로 팩을 그 자리에서 성형하고 밀봉합니다. 공기 접촉이 줄어 냉동 중에도 마르거나 냄새가 배지 않습니다.</p>
   </div>
+  <img class="photo line-photo" src="img/packing-line.jpg" alt="열성형 진공포장기에서 팩에 담긴 미니족발이 장수식품 필름으로 밀봉되는 모습" width="1000" height="1334" loading="lazy">
   <div class="process">
-    <div class="step"><div class="ph">사진: 손질</div><h3>손질</h3><p>해동한 원료육의 털과 이물을 하나씩 제거합니다.</p></div>
-    <div class="step"><div class="ph">사진: 삶기</div><h3>삶기</h3><p>자체 양념으로 삶아 색과 윤기를 냅니다.</p></div>
-    <div class="step"><div class="ph">사진: 진공포장기</div><h3>진공포장</h3><p>열성형 진공포장기로 성형과 밀봉을 한 번에 합니다.</p></div>
-    <div class="step"><div class="ph">사진: 냉동 보관</div><h3>냉동·출고</h3><p>급속 냉동 후 택배나 냉동탑차로 출고합니다.</p></div>
+    <div class="step"><img class="photo" src="img/step-prep.jpg" alt="해동한 원료육을 물에서 손질하는 모습" width="900" height="506" loading="lazy"><h3>손질</h3><p>해동한 원료육의 털과 이물을 하나씩 제거합니다.</p></div>
+    <div class="step"><img class="photo" src="img/step-cut.jpg" alt="삶은 족발을 한입 크기로 썬 모습" width="900" height="1200" loading="lazy"><h3>삶기·커팅</h3><p>자체 양념으로 삶아 색과 윤기를 내고, 한입 크기로 썹니다. 가열 공정은 HACCP 중요관리점으로 관리합니다.</p></div>
+    <div class="step"><img class="photo" src="img/step-weigh.jpg" alt="썬 족발을 저울에 달아 정량을 맞추는 모습" width="900" height="506" loading="lazy"><h3>계량</h3><p>한 팩씩 저울에 달아 정량을 맞춥니다.</p></div>
+    <div class="step"><img class="photo" src="img/step-pack.jpg" alt="열성형 진공포장기 트레이에 담긴 미니족발" width="900" height="675" loading="lazy"><h3>진공포장·출고</h3><p>열성형 진공포장기로 밀봉하고 금속검출을 거쳐 냉동 출고합니다.</p></div>
   </div>
   <div class="cert">
-    <div class="ph">HACCP 인증서</div>
-    <div><h3>HACCP 인증</h3><p class="lead">인증서 원본 이미지를 올려 두면 납품 담당자가 바로 확인할 수 있습니다. 원산지는 상세 제품 정보에 표시합니다.</p></div>
+    <a href="img/haccp.jpg" target="_blank" rel="noopener"><img src="img/haccp.jpg" alt="장수식품 HACCP 인증서" width="160" height="233" loading="lazy"></a>
+    <div><h3>HACCP 인증 (제2024-6-0633호)</h3><p class="lead">축산물가공업 · 식육가공업. 중요관리점은 가열공정과 금속검출입니다. 유효기간 2027년 11월 12일까지. 인증서를 누르면 크게 볼 수 있습니다.</p></div>
   </div>
 </div></section>
 
@@ -263,7 +267,7 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 
 <footer><div class="wrap">
   <b style="color:var(--fg)">장수식품</b>
-  <span>충남 청양군 <span class="todo">상세 주소</span> · 대표 <span class="todo">성함</span> · 사업자등록번호 <span class="todo">번호</span></span>
+  <span>충남 청양군 청남면 명덕산길 53-2 · 대표 <span class="todo">성함</span> · 사업자등록번호 <span class="todo">번호</span></span>
   <span>전화 <span class="todo">대표 번호</span> · 납품 문의는 위 문의 양식을 이용해 주세요</span>
 </div></footer>
 
