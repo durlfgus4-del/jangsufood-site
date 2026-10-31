@@ -101,6 +101,10 @@ section+section{border-top:1px solid var(--line)}
 .ceo .body{display:flex;flex-direction:column;gap:14px;min-width:0}
 .ceo .sign{font-family:var(--display);font-weight:700;color:var(--fg)}
 @media (max-width:760px){.ceo{grid-template-columns:1fr;gap:24px}.ceo .photo{max-width:260px}}
+.film .wrap{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:48px;align-items:center}
+.film video{width:100%;height:auto;aspect-ratio:9/16;border-radius:6px;background:#000;display:block}
+.film .body{display:flex;flex-direction:column;gap:14px;min-width:0}
+@media (max-width:760px){.film .wrap{grid-template-columns:1fr;gap:24px}.film video{max-width:340px}}
 /* 제품 */
 .sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
 .products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -217,6 +221,16 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
     <div class="prod"><img class="photo" src="img/prod-cut.jpg" alt="진공포장된 장수촌 족발 썬 제품" width="900" height="900" loading="lazy"><span class="cut">썬 제품</span><h3>미니족발 350g · 525g</h3><p>한입 크기로 썰어 팩에 담았습니다. 데우기만 하면 바로 냅니다. 350g은 1인 야식·사이드, 525g은 2인 메뉴·술안주용.</p></div>
     <div class="prod"><img class="photo" src="img/prod-whole.jpg" alt="진공포장된 장수촌 족발 700g" width="900" height="900" loading="lazy"><span class="cut">통 제품</span><h3>미니족발 700g</h3><p>썰지 않은 통 제품입니다. 매장에서 원하는 크기로 직접 썰어 냅니다.</p></div>
     <div class="prod"><img class="photo" src="img/prod-boneless.jpg" alt="진공포장된 장수촌 순살족발 300g" width="900" height="900" loading="lazy"><span class="cut">순살</span><h3>순살족발 300g</h3><p>뼈 없이 바로 담는 메뉴용</p></div>
+  </div>
+</div></section>
+
+<section class="film" id="film"><div class="wrap">
+  <video src="video/promo.mp4" poster="video/promo-poster.jpg" controls playsinline preload="none" width="720" height="1280">영상을 재생할 수 없는 브라우저입니다.</video>
+  <div class="body">
+    <p class="eyebrow">영상으로 보기</p>
+    <h2>겉은 쫀득하게, 속은 촉촉하게</h2>
+    <p class="lead">썰어 보면 압니다. 결대로 갈라지는 살과 윤기 나는 껍질, 36초 영상으로 장수촌 족발을 확인해 보세요.</p>
+    <div class="buy-links"><a class="btn btn-glaze" href="#buy">구매하기</a><a class="btn btn-line" href="#b2b">납품 문의</a></div>
   </div>
 </div></section>
 
