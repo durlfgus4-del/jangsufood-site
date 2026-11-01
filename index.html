@@ -325,6 +325,7 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
     fetch('https://formsubmit.co/ajax/durlfgus4@naver.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
     .then(function(r){return r.json()}).then(function(r){
       if(r.success==='true'||r.success===true){f.reset();st.textContent='문의가 접수됐습니다. 확인 후 연락드리겠습니다.';st.className='ok';}
+      else if(r.message&&/activat/i.test(r.message)){st.textContent='접수 준비 중입니다. 잠시 후 다시 보내 주시거나 전화로 문의해 주세요.';st.className='err';}
       else{throw 0}
     }).catch(function(){st.textContent='전송에 실패했습니다. 전화(042-523-9045)로 문의해 주세요.';st.className='err';})
     .finally(function(){b.disabled=false});
