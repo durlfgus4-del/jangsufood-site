@@ -82,7 +82,7 @@ section+section{border-top:1px solid var(--line)}
 .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .about .body{display:flex;flex-direction:column;gap:16px}
 .motto{font-family:var(--display);font-size:1.15rem;border-left:3px solid var(--glaze);padding-left:16px;color:var(--fg)}
-.about .photo{aspect-ratio:16/9}
+.about .photo{aspect-ratio:10/3}
 @media (max-width:760px){.about .wrap{grid-template-columns:1fr;gap:28px}}
 
 .about .ceo-wrap{display:block}
