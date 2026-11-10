@@ -32,6 +32,17 @@ h2{font-size:1rem;margin:26px 0 8px}
 ul.notes{margin:0;padding-left:1.1em;color:var(--fg)}
 ul.notes li{margin:4px 0}
 .call{display:block;margin-top:26px;text-align:center;background:var(--glaze);color:var(--onaccent);text-decoration:none;font-weight:600;padding:14px;border-radius:6px;font-size:1.05rem}
+.home{position:relative;overflow:hidden;display:block;margin-top:12px;text-align:center;text-decoration:none;
+padding:16px 12px;border-radius:6px;border:2px solid var(--glaze);color:var(--glaze);background:var(--bg)}
+.home .t{display:block;font-size:.9rem;color:var(--muted);font-weight:600}
+.home .u{display:block;font-family:var(--display);font-size:1.45rem;font-weight:700;margin-top:2px;
+background:linear-gradient(100deg,var(--glaze) 0%,var(--glaze) 40%,#F2B36B 50%,var(--glaze) 60%,var(--glaze) 100%);
+background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.6s linear infinite}
+.home::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:sweep 2.6s ease-in-out infinite}
+@keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
+@keyframes sweep{0%{left:-60%}60%,100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.home .u{animation:none;color:var(--glaze);background:none}.home::after{display:none}}
 .foot{text-align:center;color:var(--muted);font-size:.85rem;margin-top:12px}
 .foot a{color:inherit}
 </style>
@@ -59,7 +70,8 @@ ul.notes li{margin:4px 0}
   </ul>
 
   <a class="call" href="tel:0425239045">문의 042-523-9045</a>
-  <p class="foot">장수식품 · <a href="../">www.장수식품.com</a></p>
+  <a class="home" href="../"><span class="t">회사·제품·공장 소개 보러 가기 →</span><span class="u">www.장수식품.com</span></a>
+  <p class="foot">장수식품</p>
 </main>
 </body>
 </html>
