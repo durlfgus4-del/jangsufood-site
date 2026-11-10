@@ -32,17 +32,21 @@ h2{font-size:1rem;margin:26px 0 8px}
 ul.notes{margin:0;padding-left:1.1em;color:var(--fg)}
 ul.notes li{margin:4px 0}
 .call{display:block;margin-top:26px;text-align:center;background:var(--glaze);color:var(--onaccent);text-decoration:none;font-weight:600;padding:14px;border-radius:6px;font-size:1.05rem}
-.home{position:relative;overflow:hidden;display:block;margin-top:12px;text-align:center;text-decoration:none;
-padding:16px 12px;border-radius:6px;border:2px solid var(--glaze);color:var(--glaze);background:var(--bg)}
-.home .t{display:block;font-size:.9rem;color:var(--muted);font-weight:600}
-.home .u{display:block;font-family:var(--display);font-size:1.45rem;font-weight:700;margin-top:2px;
-background:linear-gradient(100deg,var(--glaze) 0%,var(--glaze) 40%,#F2B36B 50%,var(--glaze) 60%,var(--glaze) 100%);
-background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.6s linear infinite}
-.home::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
-background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);animation:sweep 2.6s ease-in-out infinite}
+.home{position:relative;overflow:hidden;display:block;margin-top:14px;text-align:center;text-decoration:none;
+padding:20px 12px;border-radius:8px;border:3px solid var(--glaze);color:var(--glaze);background:var(--bg);
+animation:pulse 1.6s ease-in-out infinite}
+.home .t{display:block;font-size:1rem;color:var(--fg);font-weight:600}
+.home .u{display:block;font-family:var(--display);font-size:1.8rem;font-weight:700;margin-top:4px;line-height:1.25;
+background:linear-gradient(100deg,var(--glaze) 0%,var(--glaze) 35%,#FFD27A 48%,#FFF4D6 50%,#FFD27A 52%,var(--glaze) 65%,var(--glaze) 100%);
+background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 1.4s linear infinite}
+.home::after{content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;
+background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);animation:sweep 1.4s ease-in-out infinite}
+.home .tap{display:inline-block;margin-top:8px;font-size:.85rem;font-weight:700;color:var(--onaccent);background:var(--glaze);padding:4px 12px;border-radius:999px;animation:bob 1s ease-in-out infinite}
 @keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
-@keyframes sweep{0%{left:-60%}60%,100%{left:130%}}
-@media (prefers-reduced-motion:reduce){.home .u{animation:none;color:var(--glaze);background:none}.home::after{display:none}}
+@keyframes sweep{0%{left:-60%}70%,100%{left:130%}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(142,47,28,.45);transform:scale(1)}50%{box-shadow:0 0 0 10px rgba(142,47,28,0);transform:scale(1.025)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.home,.home .tap{animation:none}.home .u{animation:none;color:var(--glaze);background:none}.home::after{display:none}}
 .foot{text-align:center;color:var(--muted);font-size:.85rem;margin-top:12px}
 .foot a{color:inherit}
 </style>
@@ -70,7 +74,7 @@ background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent)
   </ul>
 
   <a class="call" href="tel:0425239045">문의 042-523-9045</a>
-  <a class="home" href="../"><span class="t">회사·제품·공장 소개 보러 가기 →</span><span class="u">www.장수식품.com</span></a>
+  <a class="home" href="../"><span class="t">회사·제품·공장 소개 보러 가기 →</span><span class="u">www.장수식품.com</span><span class="tap">👆 눌러서 보기</span></a>
   <p class="foot">장수식품</p>
 </main>
 </body>
