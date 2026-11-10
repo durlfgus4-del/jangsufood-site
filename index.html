@@ -188,6 +188,7 @@
     if(!document.getElementById('f-agree').checked){st.textContent='개인정보 수집·이용에 동의해 주세요.';st.className='err';return;}
     var d={};new FormData(f).forEach(function(v,k){d[k]=v});
     d._subject='[장수식품.com] 납품 문의 - '+d['상호'];d._template='table';
+    try{fetch('https://script.google.com/macros/s/AKfycbzo25wzi83oaF6UXzm_TexTdpLP_VlPSJRLDo7Fjcs-ZbAMqBfs6T6oIG3BU7u_aKZROg/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)}).catch(function(){})}catch(x){}
     b.disabled=true;st.textContent='보내는 중입니다...';st.className='note';
     fetch('https://formsubmit.co/ajax/durlfgus4@naver.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
     .then(function(r){return r.json()}).then(function(r){
