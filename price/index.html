@@ -48,6 +48,7 @@ background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent)
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(142,47,28,.45);transform:scale(1)}50%{box-shadow:0 0 0 10px rgba(142,47,28,0);transform:scale(1.025)}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 @media (prefers-reduced-motion:reduce){.home,.home .tap{animation:none}.home .u{animation:none;color:var(--glaze);background:none}.home::after{display:none}}
+.call2{display:block;margin-top:10px;text-align:center;border:1.5px solid var(--fg);color:var(--fg);text-decoration:none;font-weight:600;padding:12px;border-radius:6px}
 .foot{text-align:center;color:var(--muted);font-size:.85rem;margin-top:12px}
 .foot a{color:inherit}
 </style>
@@ -75,7 +76,8 @@ background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent)
     <li>주문 시 품목·수량·받는 분 주소·연락처를 알려 주세요.</li>
   </ul>
 
-  <a class="call" href="tel:0425239045">문의 042-523-9045</a>
+  <a class="call" href="../order/">📦 주문하기 (수량 입력·금액 자동 계산)</a>
+  <a class="call2" href="tel:0425239045">전화 문의 042-523-9045</a>
   <a class="home" href="../"><span class="t">회사·제품·공장 소개 보러 가기 →</span><span class="u">www.장수식품.com</span><span class="tap">👆 눌러서 보기</span></a>
   <p class="foot">장수식품</p>
 </main>
