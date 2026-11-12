@@ -81,7 +81,8 @@ button.send:disabled{opacity:.6}
 
 <div class="sum" aria-live="polite">
   <div><span>상품 금액</span><span id="s1">0원</span></div>
-  <div><span>택배비 (예상 <b id="bx">0</b>박스)</span><span id="s2">0원</span></div>
+  <div><span>택배비 (예상 <b id="bx">0</b>박스 × 5,500원)</span><span id="s2">0원</span></div>
+  <div><span>제주·도서산간 추가 (박스당 3,000원)</span><span id="s4">0원</span></div>
   <div class="total"><span>예상 합계</span><span id="s3">0원</span></div>
   <p>부가세 별도 기준입니다. 박스 수는 포장 후 달라질 수 있어 최종 금액은 확인 연락 때 안내드립니다.</p>
 </div>
@@ -99,8 +100,8 @@ var $=function(i){return document.getElementById(i)};
 var won=function(n){return n.toLocaleString('ko-KR')+'원'};
 function q(k){var v=parseInt(($(k).value||'').replace(/\D/g,''),10);return isNaN(v)?0:v}
 function calc(){var s=0,fill=0;for(var k in P){var n=q(k);s+=n*P[k][0];fill+=n/P[k][1]}
- var bx=fill>0?Math.ceil(fill-1e-9):0,ship=bx*(5500+($('island').checked?3000:0));
- $('s1').textContent=won(s);$('bx').textContent=bx;$('s2').textContent=won(ship);$('s3').textContent=won(s+ship);return{s:s,bx:bx,ship:ship,t:s+ship}}
+ var bx=fill>0?Math.ceil(fill-1e-9):0,isl=$('island').checked?bx*3000:0,ship=bx*5500+isl;$('s4').textContent=won(isl);$('s2').textContent=won(bx*5500);
+ $('s1').textContent=won(s);$('bx').textContent=bx;$('s3').textContent=won(s+ship);return{s:s,bx:bx,ship:ship,t:s+ship}}
 document.querySelectorAll('.qty button').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.k;$(k).value=Math.max(0,q(k)+parseInt(b.dataset.d,10));calc()})});
 document.querySelectorAll('.qty input,#island').forEach(function(e){e.addEventListener('input',function(){if(e.id!=='island')e.value=e.value.replace(/\D/g,'');calc()});e.addEventListener('change',calc)});
 $('f').addEventListener('submit',function(ev){ev.preventDefault();var st=$('st'),c=calc();
@@ -109,7 +110,7 @@ $('f').addEventListener('submit',function(ev){ev.preventDefault();var st=$('st')
  var d={_type:'order','상호':$('biz').value.trim(),'연락처':$('tel').value.trim(),'받는분':$('rname').value.trim(),'받는분연락처':$('rtel').value.trim(),'주소':$('addr').value.trim(),
   'q350':q('q350'),'q525':q('q525'),'q700':q('q700'),'q300':q('q300'),'도서산간':$('island').checked?'예':'','예상금액':c.t,'입금자명':$('payer').value.trim(),'사업자번호':$('bizno').value.trim(),'요청사항':$('memo').value.trim(),_honey:document.querySelector('.hp').value};
  var lines=[];for(var k in P){if(d[k])lines.push(P[k][2]+' '+d[k]+'팩')}
- var mail={'_subject':'[장수식품.com] 주문 - '+d['상호'],'_template':'table','상호':d['상호'],'연락처':d['연락처'],'품목':lines.join(', '),'예상금액':won(c.t)+' (상품 '+won(c.s)+' + 택배 '+c.bx+'박스 '+won(c.ship)+', 부가세 별도)','받는분':d['받는분']||d['상호'],'받는분연락처':d['받는분연락처']||d['연락처'],'주소':d['주소'],'제주도서산간':d['도서산간']||'아니오','입금자명':d['입금자명'],'사업자번호':d['사업자번호'],'요청사항':d['요청사항'],'_honey':d._honey};
+ var mail={'_subject':'[장수식품.com] 주문 - '+d['상호'],'_template':'table','상호':d['상호'],'연락처':d['연락처'],'품목':lines.join(', '),'예상금액':won(c.t)+' (상품 '+won(c.s)+' + 택배 '+c.bx+'박스 '+won(c.ship)+($('island').checked?' 제주·도서산간 포함':'')+', 부가세 별도)','받는분':d['받는분']||d['상호'],'받는분연락처':d['받는분연락처']||d['연락처'],'주소':d['주소'],'제주도서산간':d['도서산간']||'아니오','입금자명':d['입금자명'],'사업자번호':d['사업자번호'],'요청사항':d['요청사항'],'_honey':d._honey};
  $('send').disabled=true;st.className='';st.textContent='보내는 중입니다...';
  try{fetch('https://script.google.com/macros/s/AKfycbzo25wzi83oaF6UXzm_TexTdpLP_VlPSJRLDo7Fjcs-ZbAMqBfs6T6oIG3BU7u_aKZROg/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)}).catch(function(){})}catch(x){}
  fetch('https://formsubmit.co/ajax/durlfgus4@naver.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(mail)})
@@ -117,6 +118,8 @@ $('f').addEventListener('submit',function(ev){ev.preventDefault();var st=$('st')
  .catch(function(){st.className='err';st.textContent='전송에 실패했습니다. 전화(042-523-9045)로 주문해 주세요.'})
  .finally(function(){$('send').disabled=false});
 });
+['input','change','click','keyup'].forEach(function(t){$('f').addEventListener(t,function(){setTimeout(calc,0)})});
+window.addEventListener('pageshow',function(){setTimeout(calc,0)});
 calc();
 })();
 </script>
