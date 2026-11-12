@@ -173,3 +173,4 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 
 .logo img{height:46px;width:auto;display:block}
 @media (max-width:760px){.logo img{height:38px}}
+.logo picture{display:block}
