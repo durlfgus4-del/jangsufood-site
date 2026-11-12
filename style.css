@@ -170,3 +170,6 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 .facts span a{color:var(--glaze);font-weight:600}
 .terms a{color:var(--glaze);font-weight:600;white-space:nowrap}
 .faq a{color:var(--glaze);font-weight:600}
+
+.logo img{height:46px;width:auto;display:block}
+@media (max-width:760px){.logo img{height:38px}}
