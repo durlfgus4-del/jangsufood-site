@@ -166,3 +166,7 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 .faq details[open] summary::after{content:"−"}
 .faq details p{padding:0 4px 18px;color:var(--muted);max-width:68ch}
 .lead a,.b2b a{color:var(--glaze);font-weight:600}
+
+.facts span a{color:var(--glaze);font-weight:600}
+.terms a{color:var(--glaze);font-weight:600;white-space:nowrap}
+.faq a{color:var(--glaze);font-weight:600}
