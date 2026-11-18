@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>주문 조회 | 장수식품</title>
+<meta property="og:title" content="장수식품 주문 조회">
+<meta property="og:description" content="주문하신 연락처로 처리 상태와 송장번호를 확인하세요 · 문의 042-523-9045">
+<meta property="og:image" content="https://www.xn--9p4b4nm2jd6p.com/img/og.jpg">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;600&display=swap">
+<style>
+:root{--bg:#FBFAF8;--surface:#F1EEEA;--fg:#231A16;--muted:#6E625B;--glaze:#8E2F1C;--line:#DDD6CF;--onaccent:#fff;--ok:#2F5D73;
+--display:"Gowun Batang","Noto Serif KR",serif;--body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#17120F;--surface:#221B17;--fg:#F1EAE4;--muted:#B3A69C;--glaze:#E07A5C;--line:#3A302A;--onaccent:#17120F;--ok:#7FB3CB;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.6;word-break:keep-all;font-size:16px}
+main{max-width:560px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-left,0px)) 48px}
+.brand{font-family:var(--display);color:var(--muted);text-decoration:none}
+h1{font-family:var(--display);font-size:1.6rem;margin:10px 0 4px;line-height:1.3}
+.sub{color:var(--muted);margin:0 0 18px;font-size:.92rem}
+label{display:flex;flex-direction:column;gap:5px;font-size:.88rem;font-weight:600}
+input[type=tel]{font:inherit;font-weight:400;font-size:1.1rem;padding:13px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);width:100%}
+button.send{margin-top:12px;width:100%;padding:15px;border:0;border-radius:6px;background:var(--glaze);color:var(--onaccent);font:inherit;font-weight:700;font-size:1.05rem;cursor:pointer}
+button.send:disabled{opacity:.6}
+#st{margin-top:12px;font-weight:600;min-height:1.4em}
+#st.err{color:var(--glaze)}
+.card{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card .top b{font-size:1.05rem}
+.card .top span{color:var(--muted);font-size:.88rem}
+.badge{display:inline-block;margin:10px 0 4px;padding:6px 14px;border-radius:20px;background:var(--ok);color:var(--onaccent);font-weight:700;font-size:1.05rem}
+.steps{display:flex;gap:6px;margin:10px 0 12px;padding:0;list-style:none}
+.steps li{flex:1;text-align:center;font-size:.82rem;color:var(--muted);padding-top:10px;border-top:4px solid var(--line)}
+.steps li.on{color:var(--fg);font-weight:600;border-top-color:var(--ok)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-top:1px solid var(--line);font-size:.95rem}
+.row span:first-child{color:var(--muted);flex:none}
+.row span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.inv{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.inv a,.inv button{flex:1;min-width:130px;text-align:center;padding:11px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font:inherit;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer}
+.note{color:var(--muted);font-size:.85rem;margin:8px 0 0}
+.foot{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
+.foot a{color:inherit}
+:focus-visible{outline:3px solid var(--ok);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<a class="brand" href="../../"><picture><source srcset="../../img/logo-dark.png?v=3" media="(prefers-color-scheme: dark)"><img src="../../img/logo.png?v=3" alt="JS 장수식품 JANGSU FOOD" width="480" height="146" style="height:44px;width:auto;display:block"></picture></a>
+<h1>주문 조회</h1>
+<p class="sub">홈페이지에서 주문할 때 적은 연락처를 넣으면 처리 상태와 송장번호를 볼 수 있습니다.</p>
+
+<form id="f" novalidate>
+<label for="tel">주문할 때 적은 연락처<input type="tel" id="tel" autocomplete="tel" inputmode="numeric" placeholder="010-0000-0000"></label>
+<button class="send" type="submit" id="go">조회하기</button>
+</form>
+<p id="st" role="status"></p>
+<div id="list"></div>
+
+<p class="foot">조회가 안 되거나 내용이 다르면 전화 주세요 · <a href="tel:0425239045">042-523-9045</a><br><a href="../">주문하러 가기</a> · <a href="../../price/">단가표</a></p>
+</main>
+<script>
+(function(){
+var U='https://script.google.com/macros/s/AKfycbzo25wzi83oaF6UXzm_TexTdpLP_VlPSJRLDo7Fjcs-ZbAMqBfs6T6oIG3BU7u_aKZROg/exec';
+var $=function(i){return document.getElementById(i)};
+var STEPS=['주문접수','입금확인','발송완료'];
+var MSG={'주문접수':'주문을 받았습니다. 입금이 확인되면 발송 준비를 시작합니다.','입금확인':'입금을 확인했습니다. 월~금 오후 3시 전 입금 확인 건은 당일 발송합니다.','발송완료':'로젠택배로 발송했습니다. 배송 위치는 송장번호로 확인할 수 있습니다.'};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function row(k,v){var r=el('div','row');r.appendChild(el('span','',k));r.appendChild(el('span','',v));return r}
+function card(o){
+ var c=el('div','card'),top=el('div','top');
+ top.appendChild(el('b','',o.name));top.appendChild(el('span','',o.date+' 주문'));c.appendChild(top);
+ c.appendChild(el('span','badge',o.status));
+ var ul=el('ol','steps'),at=STEPS.indexOf(o.status);STEPS.forEach(function(s,i){ul.appendChild(el('li',i<=at?'on':'',s))});c.appendChild(ul);
+ var items=[['350g',o.q350],['525g',o.q525],['700g',o.q700],['순살 300g',o.q300]].filter(function(x){return Number(x[1])>0}).map(function(x){return x[0]+' '+x[1]+'팩'}).join(', ');
+ c.appendChild(row('품목',items||'-'));
+ if(o.amount)c.appendChild(row('예상 금액',o.amount));
+ if(o.invoice){
+  c.appendChild(row('로젠택배 송장',o.invoice));
+  var d=el('div','inv'),a=el('a','','배송 위치 보기'),b=el('button','','송장번호 복사');
+  a.href='https://www.ilogen.com/web/personal/trace/'+o.invoice.replace(/\D/g,'');a.target='_blank';a.rel='noopener';
+  b.type='button';b.addEventListener('click',function(){try{navigator.clipboard.writeText(o.invoice.replace(/\D/g,'')).then(function(){b.textContent='복사됐습니다';setTimeout(function(){b.textContent='송장번호 복사'},2000)},function(){})}catch(x){}});
+  d.appendChild(a);d.appendChild(b);c.appendChild(d);
+ }
+ c.appendChild(el('p','note',MSG[o.status]||''));
+ return c;
+}
+$('f').addEventListener('submit',function(e){
+ e.preventDefault();
+ var st=$('st'),list=$('list'),tel=$('tel').value.replace(/\D/g,'');
+ list.textContent='';
+ if(tel.length<9||tel.length>12){st.className='err';st.textContent='연락처를 정확히 입력해 주세요.';return}
+ $('go').disabled=true;st.className='';st.textContent='조회 중입니다...';
+ fetch(U,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({_type:'lookup',tel:tel})})
+ .then(function(r){return r.json()}).then(function(r){
+  if(!r||!r.ok)throw 0;
+  r.orders=r.orders.filter(function(o){return STEPS.indexOf(o.status)>=0});
+  if(!r.orders.length){st.className='err';st.textContent='이 연락처로 접수된 주문이 없습니다. 주문할 때 적은 번호인지 확인해 주세요.';return}
+  st.textContent='최근 주문 '+r.orders.length+'건';
+  r.orders.forEach(function(o){list.appendChild(card(o))});
+ })
+ .catch(function(){st.className='err';st.textContent='조회에 실패했습니다. 잠시 후 다시 시도하거나 전화(042-523-9045)로 문의해 주세요.'})
+ .finally(function(){$('go').disabled=false});
+});
+})();
+</script>
+</body>
+</html>
