@@ -20,6 +20,9 @@ main{max-width:560px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-lef
 .brand{font-family:var(--display);color:var(--muted);text-decoration:none}
 h1{font-family:var(--display);font-size:1.6rem;margin:10px 0 4px;line-height:1.3}
 .sub{color:var(--muted);margin:0 0 22px;font-size:.92rem}
+.head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 4px}
+.head h1{margin:0}
+.chk{flex:none;padding:9px 16px;border:2px solid var(--ok);border-radius:20px;color:var(--ok);font-weight:700;font-size:.95rem;text-decoration:none;white-space:nowrap}
 h2{font-size:1.05rem;margin:26px 0 10px}
 .items{display:flex;flex-direction:column;gap:10px}
 .item{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
@@ -53,7 +56,7 @@ button.send:disabled{opacity:.6}
 <body>
 <main>
 <a class="brand" href="../"><picture><source srcset="../img/logo-dark.png?v=3" media="(prefers-color-scheme: dark)"><img src="../img/logo.png?v=3" alt="JS 장수식품 JANGSU FOOD" width="480" height="146" style="height:44px;width:auto;display:block"></picture></a>
-<h1>거래처 주문</h1>
+<div class="head"><h1>거래처 주문</h1><a class="chk" href="check/">주문 조회</a></div>
 <p class="sub">품목별 수량을 넣으면 금액이 자동 계산됩니다. 월~금 오후 3시 전 주문·입금 확인 건은 당일 발송합니다.</p>
 
 <form id="f" novalidate>
