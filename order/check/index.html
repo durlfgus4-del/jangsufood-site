@@ -49,12 +49,8 @@ button.send:disabled{opacity:.6}
 <main>
 <a class="brand" href="../../"><picture><source srcset="../../img/logo-dark.png?v=3" media="(prefers-color-scheme: dark)"><img src="../../img/logo.png?v=3" alt="JS 장수식품 JANGSU FOOD" width="480" height="146" style="height:44px;width:auto;display:block"></picture></a>
 <h1>주문 조회</h1>
-<p class="sub">홈페이지에서 주문할 때 적은 연락처를 넣으면 처리 상태와 송장번호를 볼 수 있습니다.</p>
+<p class="sub">주문하시면 문자로 보내 드리는 조회 링크를 누르면 처리 상태와 송장번호를 볼 수 있습니다.</p>
 
-<form id="f" novalidate>
-<label for="tel">주문할 때 적은 연락처<input type="tel" id="tel" autocomplete="tel" inputmode="numeric" placeholder="010-0000-0000"></label>
-<button class="send" type="submit" id="go">조회하기</button>
-</form>
 <p id="st" role="status"></p>
 <div id="list"></div>
 
@@ -86,23 +82,23 @@ function card(o){
  c.appendChild(el('p','note',MSG[o.status]||''));
  return c;
 }
-$('f').addEventListener('submit',function(e){
- e.preventDefault();
- var st=$('st'),list=$('list'),tel=$('tel').value.replace(/\D/g,'');
- list.textContent='';
- if(tel.length<9||tel.length>12){st.className='err';st.textContent='연락처를 정확히 입력해 주세요.';return}
- $('go').disabled=true;st.className='';st.textContent='조회 중입니다...';
- fetch(U,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({_type:'lookup',tel:tel})})
+var st=$('st'),list=$('list');
+var k=(new URLSearchParams(location.search).get('k')||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+if(k.length!==12){
+ st.className='';
+ st.innerHTML='주문 후 받으신 문자의 조회 링크를 눌러 주세요.<br><span style="font-weight:400;color:var(--muted)">문자를 못 받으셨거나 링크가 열리지 않으면 아래 번호로 연락 주시면 바로 확인해 드리겠습니다.</span>';
+}else{
+ st.textContent='조회 중입니다...';
+ fetch(U,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({_type:'lookup',key:k})})
  .then(function(r){return r.json()}).then(function(r){
   if(!r||!r.ok)throw 0;
   r.orders=r.orders.filter(function(o){return STEPS.indexOf(o.status)>=0});
-  if(!r.orders.length){st.className='err';st.textContent='이 연락처로 접수된 주문이 없습니다. 주문할 때 적은 번호인지 확인해 주세요.';return}
-  st.textContent='최근 주문 '+r.orders.length+'건';
+  if(!r.orders.length){st.className='err';st.textContent='주문을 찾지 못했습니다. 아래 번호로 연락 주시면 확인해 드리겠습니다.';return}
+  st.textContent='';
   r.orders.forEach(function(o){list.appendChild(card(o))});
  })
- .catch(function(){st.className='err';st.textContent='조회에 실패했습니다. 잠시 후 다시 시도하거나 전화(042-523-9045)로 문의해 주세요.'})
- .finally(function(){$('go').disabled=false});
-});
+ .catch(function(){st.className='err';st.textContent='조회에 실패했습니다. 잠시 후 다시 열어 보시거나 아래 번호로 연락 주세요.'});
+}
 })();
 </script>
 </body>

@@ -117,7 +117,7 @@ $('f').addEventListener('submit',function(ev){ev.preventDefault();var st=$('st')
  $('send').disabled=true;st.className='';st.textContent='보내는 중입니다...';
  try{fetch('https://script.google.com/macros/s/AKfycbzo25wzi83oaF6UXzm_TexTdpLP_VlPSJRLDo7Fjcs-ZbAMqBfs6T6oIG3BU7u_aKZROg/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)}).catch(function(){})}catch(x){}
  fetch('https://formsubmit.co/ajax/durlfgus4@naver.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(mail)})
- .then(function(r){return r.json()}).then(function(r){if(r.success===true||r.success==='true'){$('f').reset();calc();st.className='ok';st.innerHTML='주문이 접수됐습니다. 확인 후 금액과 발송 일정을 연락드리겠습니다.<br><a href="check/" style="color:inherit">처리 상태는 주문 조회에서 확인할 수 있습니다 →</a>'}else throw 0})
+ .then(function(r){return r.json()}).then(function(r){if(r.success===true||r.success==='true'){$('f').reset();calc();st.className='ok';st.innerHTML='주문이 접수됐습니다. 확인 후 금액과 발송 일정을 연락드리겠습니다.<br><a href="check/" style="color:inherit">처리 상태는 문자로 보내 드리는 조회 링크에서 확인할 수 있습니다 →</a>'}else throw 0})
  .catch(function(){st.className='err';st.textContent='전송에 실패했습니다. 전화(042-523-9045)로 주문해 주세요.'})
  .finally(function(){$('send').disabled=false});
 });
